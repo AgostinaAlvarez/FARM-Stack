@@ -1,3 +1,8 @@
+
+
+//frontend en react
+
+import axios from 'axios'
 import React, { useState } from 'react'
 
 const LoginScreen = () => {
@@ -18,7 +23,23 @@ const LoginScreen = () => {
   const handleSubmit = (e) =>{
     e.preventDefault()
     console.log('hacer el login')
-    console.log(userData)
+    //console.log(userData)
+    login()
+  }
+
+  async function login (){
+    try{
+      const response = await axios.post('http://localhost:8000/api/login',userData)
+      console.log(response.data)
+      if(response.data.login === true){
+        console.log('Login permitido')
+        document.cookie = `jwt=${response.data.token}; path=/`;
+      }else{
+        console.log('Login no permitido')
+      }
+    }catch(err){
+      console.log(err)
+    }
   }
 
   return (
