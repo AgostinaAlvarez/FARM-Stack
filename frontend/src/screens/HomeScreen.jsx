@@ -1,28 +1,54 @@
 
 import axios from 'axios';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import LoadingScreen from '../components/LoadingScreen';
+import ErrorScreen from '../components/ErrorScreen';
 
 const HomeScreen = () => {
-  function setCookieJwt(){
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb21lIjoicGF5bG9hZCJ9.4twFt5NiznN84AWoo1d7KO1T_yoc0Z6XOpOVswacPZg"
-    document.cookie = `token=${token}; path=/`;
-  }
+  
+  const [ error,setError ] = useState(false)
+  const [ loading,setLoading ] = useState(true)
 
-  async function testerJWT (){
+  useEffect(() => {
+    console.log('hay que pedir los viniedos')
+    getViniedos()
+  }, [])
+  
+
+  async function getViniedos (){
     try{
-      const response = await axios.get('http://localhost:8000/api/user-info', {
-      withCredentials: true // Habilitar el intercambio de cookies
-      });
-      console.log(response);
+      const response = await axios.get('http://localhost:8000/api/get-viniedos',{
+        withCredentials: true // Habilitar el intercambio de cookies
+      })
+      console.log(response.data.viniedos)
+      setError(false)
     }catch(err){
       console.log(err)
+      setError(true)
+    }finally{
+      setLoading(false)
     }
   }
+
   return (
     <>
-    <h1>Home screen</h1>
-    <button onClick={()=>{setCookieJwt()}}>Setear cookie del jwt</button>
-    <button onClick={()=>{testerJWT()}}>Testear</button>
+    {
+      loading === true ?
+      <LoadingScreen/>
+      :
+      <>
+        {
+          error === true ?
+          <ErrorScreen/>
+          :
+          <>
+            <h1>Home screen</h1>
+            <h2>Lista de viniedos</h2>
+          </>
+        }
+      </>
+    }
+   
     </>
   )
 }

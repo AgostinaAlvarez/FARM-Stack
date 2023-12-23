@@ -3,9 +3,11 @@
 //frontend en react
 
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { AppContext } from '../context/AppContext'
 
 const LoginScreen = () => {
+  const { login,setLogin } = useContext(AppContext)
   const [userData,setUserData] = useState({email:'',password:''})
   
   const handleChangeEmail = (e) =>{
@@ -24,21 +26,24 @@ const LoginScreen = () => {
     e.preventDefault()
     console.log('hacer el login')
     //console.log(userData)
-    login()
+    log_in()
   }
 
-  async function login (){
+  async function log_in (){
     try{
-      const response = await axios.post('http://localhost:8000/api/login',userData)
+      const response = await axios.get(`http://localhost:8000/api/log-in/${userData.email}/${userData.password}`)
       console.log(response.data)
       if(response.data.login === true){
         console.log('Login permitido')
-        document.cookie = `jwt=${response.data.token}; path=/`;
+        document.cookie = `token=${response.data.token}; path=/`;
+        setLogin(true)
       }else{
         console.log('Login no permitido')
+        setLogin(false)
       }
     }catch(err){
       console.log(err)
+      setLogin(false)
     }
   }
 
