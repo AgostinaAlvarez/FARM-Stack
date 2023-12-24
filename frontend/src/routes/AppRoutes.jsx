@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import HomeScreen from '../screens/HomeScreen'
 import LoginScreen from '../screens/LoginScreen'
+import PrivateRoutes from './PrivateRoutes'
 
 const AppRoutes = () => {
   const { login,setLogin } = useContext(AppContext)
@@ -11,10 +12,7 @@ const AppRoutes = () => {
     <>
       {
         login === true ?
-        <Routes>
-          <Route path='/' element={<HomeScreen/>} />
-          <Route path='/login' element={<Navigate to='/'/>}/>
-        </Routes>
+        <PrivateRoutes/>
         :
         <Routes>
           <Route path='/login' element={<LoginScreen/>}/>
