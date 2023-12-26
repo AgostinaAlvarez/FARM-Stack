@@ -55,7 +55,7 @@ const CultivosScreen = () => {
                     <span>{cultivo.nombre_viniedo}</span> 
                     <span>{cultivo.localidad} {cultivo.provincia} {cultivo.pais}</span>
                     <span>Densidad de plantacion: </span>
-                    <button className='btntest'>Ver cultivo</button>
+                    <button className='btntest' onClick={()=>{navigate(`/cultivos/${cultivo.id}`)}}>Ver cultivo</button>
                   </div>
                 )
               }

@@ -11,6 +11,11 @@ const CultivoDetail = () => {
     
   }, [])
   
+  async function getDatos (){
+    
+  }
+
+
   return (
     <>
       {
