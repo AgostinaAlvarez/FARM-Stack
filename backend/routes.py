@@ -314,4 +314,14 @@ async def get_plantaciones(payload: dict = Depends(verify_token)):
 
 
 #obtener los datos de una plantacion por id
+@router.get("/api/plantacion/{id}")
+async def get_plantacion_by_id(id: str,payload: dict = Depends(verify_token)):
+    try:
+        db = SessionLocal()
+        plantacion = db.execute(f"SELECT parcelas.nombre AS nombre_parcela, viniedos.localidad, viniedos.provincia, viniedos.pais, viniedos.nombre AS nombre_viniedo, uvas.nombre AS nombre_uva, plantaciones.fecha,plantaciones.densidad AS densidad_de_plantacion, plantaciones.id AS id,parcelas.superficie,parcelas.latitud,parcelas.longitud,ST_ASText(parcelas.coordenadas) AS coordenadas_polygon, plantaciones.fecha FROM plantaciones JOIN parcelas ON parcelas.id = plantaciones.id_parcela JOIN viniedos ON parcelas.id_viniedo = viniedos.id JOIN uvas ON uvas.id = plantaciones.id_uva WHERE plantaciones.id = '{id}'").fetchall()
+        suelos = db.execute(f"SELECT suelos.nombre AS suelo_nombre, suelos.descripcion AS suelo_descripcion, suelos.composicion AS suelo_composicion, suelos.drenaje AS suelo_drenaje, suelos.pH AS suelo_pH, suelos.retencionAgua AS suelo_retencionAgua, suelos.texturaSuelo AS suelo_texturaSuelo, suelos.capacidadAireacion AS suelo_capacidadAireacion,suelos.retencionNutrientes AS suelo_retencionNutrientes FROM plantaciones JOIN parcelas ON parcelas.id = plantaciones.id_parcela JOIN tipodesueloparcela ON parcelas.id =  tipodesueloparcela.id_parcela JOIN suelos ON suelos.id = tipodesueloparcela.id_suelo WHERE plantaciones.id = '{id}'").fetchall()
+        return {"detalle":plantacion[0],"suelos":suelos}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
