@@ -308,6 +308,7 @@ async def get_plantaciones(payload: dict = Depends(verify_token)):
     try:
         db = SessionLocal()
         plantaciones = db.execute("SELECT parcelas.nombre AS nombre_parcela, viniedos.localidad, viniedos.provincia, viniedos.pais, viniedos.nombre AS nombre_viniedo, uvas.nombre AS nombre_uva, plantaciones.fecha,plantaciones.densidad AS densidad_de_plantacion, plantaciones.id AS id FROM plantaciones JOIN parcelas ON parcelas.id = plantaciones.id_parcela JOIN viniedos ON parcelas.id_viniedo = viniedos.id JOIN uvas ON uvas.id = plantaciones.id_uva").fetchall()
+        #uvas = db.execute("SELECT")
         return {"plantaciones":plantaciones}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

@@ -76,44 +76,68 @@ const HomeScreen = () => {
           error === true ?
           <div>Error</div>
           :
-          <div className='scroll-container'>
-            <h1>Home Screen</h1>
-            <span>Territorio: </span>
-            <span>Tareas pendientes</span>
-            <div>
-              {
-                tareas.length === 0 ?
-                <>
-                  <div>No hay tareas pendientes</div>
-                </>
-                :
-                <>
-                  {
-                    tareas.map((item)=>
-                      <>
-                        {
-                          
-                          item.estado === 'Pendiente' ?
-                          <div key={item.id_tarea} style={{backgroundColor:"red"}} className='main-tasks-item'>
-                            <div>
-                              <h3>{item.nombre_tarea}</h3>
-                              <span>{item.nombre_viniedo} - {item.nombre_parcela}</span>
-                            </div>
-                            <div>
-                              <button onClick={()=>{completeTaks(item.id_tarea)}}>Completar</button>
-                              <button>Ver tarea</button>
-                            </div>
-                          </div>
-                          :
-                          <></>
-                          
-                        }
-                      </>
-                    )
-                  }
-                </>
-              }
+          <div className='home-screen'>
+            
+            <div className='home-screen-main'>
+              <div className='home-screen-grid'>
+                <div style={{backgroundColor:"red"}}>d</div>
+                <div style={{backgroundColor:"red"}}>d</div>
+                <div style={{backgroundColor:"red"}}>d</div>
+              </div>
+              <div className='home-screen-section-container'>
+                <div style={{backgroundColor:"green"}}>Grafico</div>
+                <div style={{backgroundColor:"green"}}>
+                  <div style={{height:25, fontSize:19,backgroundColor:"blue"}}>Tareas</div>
+                  <div className='home-screen-task-container'></div>
+                </div>
+              </div>
             </div>
+            <div className='home-screen-aside'>
+
+            </div>
+            {
+              /*
+              
+              
+              <span>Territorio: </span>
+              <span>Tareas pendientes</span>
+              <div>
+                {
+                  tareas.length === 0 ?
+                  <>
+                    <div>No hay tareas pendientes</div>
+                  </>
+                  :
+                  <>
+                    {
+                      tareas.map((item)=>
+                        <>
+                          {
+                            
+                            item.estado === 'Pendiente' ?
+                            <div key={item.id_tarea} style={{backgroundColor:"red"}} className='main-tasks-item'>
+                              <div>
+                                <h3>{item.nombre_tarea}</h3>
+                                <span>{item.nombre_viniedo} - {item.nombre_parcela}</span>
+                              </div>
+                              <div>
+                                <button onClick={()=>{completeTaks(item.id_tarea)}}>Completar</button>
+                                <button>Ver tarea</button>
+                              </div>
+                            </div>
+                            :
+                            <></>
+                            
+                          }
+                        </>
+                      )
+                    }
+                  </>
+                }
+              </div>
+              
+              */
+            }
           </div>
         }
       </>
