@@ -266,3 +266,36 @@ async def get_parcelas_by_viniedo(id: str, payload: dict = Depends(verify_token)
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+
+#---------------UVAS--------------
+    
+#obtener todas las uvas
+@router.get("/api/uvas")
+async def get_uvas(payload: dict = Depends(verify_token)):
+    try:
+        db = SessionLocal()
+        uvas = db.execute("SELECT * FROM uvas").fetchall()
+        return {"uvas":uvas}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+
+#-------------PLANTACIONES-------------
+
+class PlantacionModel (BaseModel):
+    id: str
+    id_uva: str
+    id_parcela: str
+    fecha: str
+
+#crear una nueva plantacion
+@router.post("/api/plantaciones")
+async def create_plantacion(item: PlantacionModel ,payload: dict = Depends(verify_token)):
+    try:
+        db = SessionLocal()
+        db.execute(f"INSERT INTO plantaciones (id,id_uva,id_parcela,fecha) VALUES ('{item.id}','{item.id_uva}','{item.id_parcela}','{item.fecha}')")
+        db.commit()
+        return {"ok":True}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
