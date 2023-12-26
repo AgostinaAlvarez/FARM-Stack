@@ -3,14 +3,15 @@ import React, { useContext, useEffect, useState } from 'react'
 import NuevoCultivos from './cultivos/NuevoCultivos'
 import axios from 'axios'
 import { AppContext } from '../context/AppContext'
+import { useNavigate } from 'react-router-dom'
 
 const CultivosScreen = () => {
   const { axiosConfig,cultivos,setCultivos } = useContext(AppContext)
+  const navigate = useNavigate()
+  
   const [ loading,setLoading ] = useState(true)
   const [ err,setErr ] = useState(false)
-
   const [ overlayCultivo,setOverlayCultivo ] = useState(false)
-  
 
   useEffect(() => {
     getCultivos()

@@ -8,6 +8,7 @@ import ViniedosScreen from '../screens/ViniedosScreen'
 import ViniedoDetail from '../screens/vinedos/ViniedoDetail'
 import ParcelaDetail from '../screens/vinedos/ParcelaDetail'
 import CultivosScreen from '../screens/CultivosScreen'
+import CultivoDetail from '../screens/cultivos/CultivoDetail'
 
 const PrivateRoutes = () => {
   return (
@@ -24,7 +25,9 @@ const PrivateRoutes = () => {
             <Route path='/parcela/:id' element={<ParcelaDetail/>}/>
             {/*Cultivos routes*/}
             <Route path='/cultivos' element={<CultivosScreen/>}/>
+            <Route path='/cultivos/:id' element={<CultivoDetail/>}/>
 
+            
             {/*Redireccion del login*/}
             <Route path='/login' element={<Navigate to='/'/>}/>
           </Routes>
