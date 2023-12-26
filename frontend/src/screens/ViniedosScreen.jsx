@@ -1,77 +1,71 @@
-import React from 'react'
-import { Circle, CircleMarker, MapContainer, Polygon, Polyline, Popup, Rectangle, TileLayer } from 'react-leaflet';
-
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+import axios from 'axios'
+import React, { useContext, useEffect, useState } from 'react'
+import { AppContext } from '../context/AppContext'
+import { NavLink } from 'react-router-dom'
 
 const ViniedosScreen = () => {
-  const center = [51.505, -0.09]
+  const items = [1,1,1,1]
+  
+  const { axiosConfig,viniedos,setViniedos } = useContext(AppContext);
+  
+  const [ loading,setLoading ] = useState(true)
+  const [ err,setErr ] = useState(false)
 
-  const polyline = [
-  [51.505, -0.09],
-  [51.51, -0.1],
-  [51.51, -0.12],
-  ]
+  useEffect(() => {
+    getViniedos()
+  }, [])
+  
+  
+  async function getViniedos (){
+    try{
+      const response = await axios.get('http://localhost:8000/api/get-viniedos',axiosConfig)
+      console.log(response.data.viniedos)
+      setViniedos(response.data.viniedos)
+      setErr(false)
+    }catch(err){
+      console.log(err)
+      setErr(true)
+      setLoading(false)
+    }finally{
+      setLoading(false)
+    }
+  }
 
-  const multiPolyline = [
-  [
-    [51.5, -0.1],
-    [51.5, -0.12],
-    [51.52, -0.12],
-  ],
-  [
-    [51.5, -0.05],
-    [51.5, -0.06],
-    [51.52, -0.06],
-  ],
-  ]
-
-  const polygon = [
-  [51.515, -0.09],
-  [51.52, -0.1],
-  [51.52, -0.12],
-  ]
-
-  const multiPolygon = [
-  [
-    [51.51, -0.12],
-    [51.51, -0.13],
-    [51.53, -0.13],
-  ],
-  [
-    [51.51, -0.05],
-    [51.51, -0.07],
-    [51.53, -0.07],
-  ],
-  ]
-
-  const rectangle = [
-    [51.49, -0.08],
-    [51.5, -0.06],
-  ]
-
-  const fillBlueOptions = { fillColor: 'blue' }
-  const blackOptions = { color: 'black' }
-  const limeOptions = { color: 'lime' }
-  const purpleOptions = { color: 'purple' }
-  const redOptions = { color: 'red' }
   return (
-    <div >
-        <MapContainer style={{ height: '400px' }} center={center} zoom={13} scrollWheelZoom={false} >
-    <TileLayer
-      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    />
-    <Circle center={center} pathOptions={fillBlueOptions} radius={200} />
-    <CircleMarker center={[51.51, -0.12]} pathOptions={redOptions} radius={20}>
-      <Popup>Popup in CircleMarker</Popup>
-    </CircleMarker>
-    <Polyline pathOptions={limeOptions} positions={polyline} />
-    <Polyline pathOptions={limeOptions} positions={multiPolyline} />
-    <Polygon pathOptions={purpleOptions} positions={polygon} />
-    <Polygon pathOptions={purpleOptions} positions={multiPolygon} />
-    <Rectangle bounds={rectangle} pathOptions={blackOptions} />
-  </MapContainer>
-    </div>
-    
+    <>
+      {
+        loading === true ?
+        <div>Loaging</div>
+        :
+        <>
+        {
+          
+          err === true ?
+          <div>Error del servidor</div>
+          :
+          <div className='scroll-container'>
+            <h1>Viñedos</h1>
+            <div>Lista de viñedos</div>
+            <div>
+            {
+              viniedos.map((item,index)=>
+                <div key={index}>
+                  <h3>{item.nombre}</h3>
+                  <p>{item.localidad} {item.provincia} {item.pais}</p>
+                  <NavLink to={`/viniedos/${item.id}`}>
+                    Ver
+                  </NavLink>
+                </div>
+              )
+            }
+            </div>
+          </div>
+        }
+        </>
+      }
+    </>
   )
 }
 

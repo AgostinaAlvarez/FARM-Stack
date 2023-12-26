@@ -1,9 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import HomeScreen from '../screens/HomeScreen'
 import Aside from '../components/Aside'
 import NavBar from '../components/NavBar'
 import ViniedosScreen from '../screens/ViniedosScreen'
+import ViniedoDetail from '../screens/vinedos/ViniedoDetail'
+import ParcelaDetail from '../screens/vinedos/ParcelaDetail'
+import CultivosScreen from '../screens/CultivosScreen'
 
 const PrivateRoutes = () => {
   return (
@@ -14,37 +18,16 @@ const PrivateRoutes = () => {
           <NavBar/>
           <Routes>
             <Route path='/' element={<HomeScreen/>}/>
+            {/*Viñedos routes */}
             <Route path='/vinedos' element={<ViniedosScreen/>}/>
+            <Route path='/viniedos/:id' element={<ViniedoDetail/>}/>
+            <Route path='/parcela/:id' element={<ParcelaDetail/>}/>
+            {/*Cultivos routes*/}
+            <Route path='/cultivos' element={<CultivosScreen/>}/>
+
+            {/*Redireccion del login*/}
             <Route path='/login' element={<Navigate to='/'/>}/>
           </Routes>
-          {
-            /*
-            
-            <div className='main-grid'>
-            <section className='main-content'>
-              <div className='main-grid-header'>
-                <div style={{backgroundColor:"red"}}>1</div>
-                <div style={{backgroundColor:"red"}}>2</div>
-                <div style={{backgroundColor:"red"}}>3</div>
-              </div>
-              <h3>Tareas programadas</h3>
-              <div className='main-tasks-container'>
-                {
-                  test.map((item)=>
-                    <div style={{backgroundColor:"red"}}>Tarea: {item}</div>
-                  )
-                }
-              </div>
-            </section>
-            <section className='main-aside'>
-              <div>dia</div>
-              <div>Pronostico</div>
-              <div>Calendario</div>
-              <div>Notas calendario</div>
-            </section>
-          </div>
-            */
-          }
           
         </div>
       </div>

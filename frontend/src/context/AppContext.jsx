@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { createContext } from "react";
 
@@ -6,11 +7,23 @@ export const AppContext = createContext();
 export const AppContextProvider = (props) =>{
     const valor1 = 'hola'
     const [ login,setLogin ] = useState(true)
+
+    //Tareas de los viñedos
+    const [ tareas,setTareas ] = useState([])
+
+    //Lista de viñedos
+    const [ viniedos,setViniedos ] = useState([])
+
+    const axiosConfig = {withCredentials: true}
+
     return(
         <AppContext.Provider 
             value={{
                 valor1,
-                login,setLogin
+                login,setLogin,
+                tareas,setTareas,
+                axiosConfig,
+                viniedos,setViniedos
             }}
         >
             {props.children}

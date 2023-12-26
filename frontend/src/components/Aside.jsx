@@ -26,9 +26,13 @@ const Aside = () => {
             <img src={LabIcon} style={{width:25}}/>
             <span>Laboratorio</span>
         </div>
-        <div className='aside-icon'>
+        <div onClick={()=>{navigate('/cultivos')}} className='aside-icon'>
             <img src={Agro} style={{width:25}}/>
             <span>Cultivos</span>
+        </div>
+        <div className='aside-icon'>
+            <img src={Agro} style={{width:25}}/>
+            <span>Registro Ambiental</span>
         </div>
     </aside>
   )
