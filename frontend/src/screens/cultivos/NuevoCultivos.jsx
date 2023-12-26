@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { AppContext } from '../../context/AppContext'
 import DatePicker from "react-datepicker";
 import { v4 as uuidv4 } from 'uuid';
@@ -9,7 +10,7 @@ import Swal from 'sweetalert2'
 
 const NuevoCultivos = ({setOverlay}) => {
   
-  const { axiosConfig } = useContext(AppContext);
+  const { axiosConfig,cultivos,setCultivos } = useContext(AppContext);
 
   const [ loading,setLoading ] = useState(true);
   const [ err,setErr ] = useState(false)
@@ -22,6 +23,9 @@ const NuevoCultivos = ({setOverlay}) => {
   const [ idViniedo,setIdViniedo ] = useState(null);
   const [ idParcela,setIdParcela ] = useState(null);
   const [ idUva,setIdUva ] = useState(null)
+
+
+  const inputRef = useRef(null);
 
   const [ currentScreen,setCurrentScreen ] = useState(0)
 
@@ -61,6 +65,7 @@ const NuevoCultivos = ({setOverlay}) => {
     setLoading(true)
     try{
       const response = await axios.get(`http://localhost:8000/api/viniedo/${idViniedo}`,axiosConfig)
+      console.log(response.data)
       const response_modify = response.data.parcelas.map((parcela)=>{
         return {...parcela,selected:false}
       })
@@ -121,27 +126,54 @@ const NuevoCultivos = ({setOverlay}) => {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-
+  
 
   async function sendDatos (){
+    const densidad = inputRef.current.value;
+    
     const obj = {
       id: uuidv4(),
       id_uva: idUva,
       id_parcela: idParcela,
-      fecha: `${selectedDate.getFullYear()}-${selectedDate.getMonth()+1}-${selectedDate.getDate()}`
+      fecha: `${selectedDate.getFullYear()}-${selectedDate.getMonth()+1}-${selectedDate.getDate()}`,
+      densidad:densidad,
     }
+    
+    const viniedoData = viniedos.find((item)=>item.id === idViniedo)
+    const parcelaData = parcelas.find((item)=>item.id === idParcela)
+    const uvaData = uvas.find((item)=>item.id === idUva)
+    console.log('cultivo nuevo')
+    const nuevoCultivo = {
+      densidad_de_plantacion:parseFloat(densidad),
+      fecha:`${selectedDate.getFullYear()}-${selectedDate.getMonth()+1}-${selectedDate.getDate()}`,
+      localidad:viniedoData.localidad,
+      nombre_parcela:parcelaData.nombre,
+      nombre_uva:uvaData.nombre,
+      nombre_viniedo: viniedoData.nombre,
+      pais:viniedoData.pais,
+      provincia:viniedoData.provincia
+    }
+    console.log(nuevoCultivo)
 
     console.log(obj)
     setLoading(true)
     try{
       await axios.post('http://localhost:8000/api/plantaciones',obj,axiosConfig)
+      setCultivos([...cultivos,nuevoCultivo])
       setErr(false)
     }catch(err){
       console.log(err)
       setErr(true)
     }finally{
       setLoading(false)
-
+      setOverlay(false)
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Cultivo creado!",
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
 
   }
@@ -215,6 +247,8 @@ const NuevoCultivos = ({setOverlay}) => {
           onChange={handleDateChange}
           dateFormat="dd/MM/yyyy" 
         />
+        <span>Densidad de plantación: Número de plantas de vid por hectárea.</span>
+        <input type="number" id="miInput" ref={inputRef}/>
         <span>Notas</span>
         <textarea></textarea>
         <button onClick={sendDatos}>Guardar</button>

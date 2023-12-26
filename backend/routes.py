@@ -288,14 +288,27 @@ class PlantacionModel (BaseModel):
     id_uva: str
     id_parcela: str
     fecha: str
+    densidad: float
 
 #crear una nueva plantacion
 @router.post("/api/plantaciones")
 async def create_plantacion(item: PlantacionModel ,payload: dict = Depends(verify_token)):
     try:
         db = SessionLocal()
-        db.execute(f"INSERT INTO plantaciones (id,id_uva,id_parcela,fecha) VALUES ('{item.id}','{item.id_uva}','{item.id_parcela}','{item.fecha}')")
+        db.execute(f"INSERT INTO plantaciones (id,id_uva,id_parcela,fecha,densidad) VALUES ('{item.id}','{item.id_uva}','{item.id_parcela}','{item.fecha}', {item.densidad})")
         db.commit()
         return {"ok":True}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+
+#obtener las plantaciones
+@router.get("/api/plantaciones")
+async def create_plantacion(payload: dict = Depends(verify_token)):
+    try:
+        db = SessionLocal()
+        plantaciones = db.execute("SELECT parcelas.nombre AS nombre_parcela, viniedos.localidad, viniedos.provincia, viniedos.pais, viniedos.nombre AS nombre_viniedo, uvas.nombre AS nombre_uva, plantaciones.fecha,plantaciones.densidad AS densidad_de_plantacion FROM plantaciones JOIN parcelas ON parcelas.id = plantaciones.id_parcela JOIN viniedos ON parcelas.id_viniedo = viniedos.id JOIN uvas ON uvas.id = plantaciones.id_uva").fetchall()
+        return {"plantaciones":plantaciones}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    

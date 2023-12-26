@@ -14,6 +14,9 @@ export const AppContextProvider = (props) =>{
     //Lista de viñedos
     const [ viniedos,setViniedos ] = useState([])
 
+    //Lista de cultivos
+    const [ cultivos,setCultivos ] = useState([])
+
     const axiosConfig = {withCredentials: true}
 
     return(
@@ -23,7 +26,8 @@ export const AppContextProvider = (props) =>{
                 login,setLogin,
                 tareas,setTareas,
                 axiosConfig,
-                viniedos,setViniedos
+                viniedos,setViniedos,
+                cultivos,setCultivos
             }}
         >
             {props.children}
