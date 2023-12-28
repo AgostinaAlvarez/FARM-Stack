@@ -76,25 +76,18 @@ const HomeScreen = () => {
           error === true ?
           <div>Error</div>
           :
-          <div className='home-screen'>
-            
+          <div className='scroll-container home-screen'>
             <div className='home-screen-main'>
-              <div className='home-screen-grid'>
-                <div style={{backgroundColor:"red"}}>d</div>
-                <div style={{backgroundColor:"red"}}>d</div>
-                <div style={{backgroundColor:"red"}}>d</div>
-              </div>
-              <div className='home-screen-section-container'>
-                <div style={{backgroundColor:"green"}}>Grafico</div>
-                <div style={{backgroundColor:"green"}}>
-                  <div style={{height:25, fontSize:19,backgroundColor:"blue"}}>Tareas</div>
-                  <div className='home-screen-task-container'></div>
-                </div>
+              <div>
+                Grid
               </div>
             </div>
+            
             <div className='home-screen-aside'>
-
+              aside
             </div>
+
+           
             {
               /*
               
