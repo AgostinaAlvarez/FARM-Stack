@@ -42,7 +42,7 @@
 
 .aside{
   height: 100vh;
-  width: 200px;
+  width: 250px;
   background-color: red;
   box-sizing: border-box;
   display: flex;
@@ -72,7 +72,7 @@
 }
 
 .main{
-  width: calc(100% - 200px);
+  width: calc(100% - 250px);
   height: 100vh;
   background-color: pink;
 }
@@ -100,6 +100,23 @@
 }
 
 
+
+.scroll-container::-webkit-scrollbar {
+  width: 8px; /* Ancho del scrollbar */
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+background-color: #b6b6b6; /* Color del thumb (agarre) */
+border-radius: 8px; /* Borde redondeado del thumb */
+}
+
+.scroll-container::-webkit-scrollbar-track {
+background-color: #fff; /* Color del track (rastro) */
+border-radius: 8px; /* Borde redondeado del track */
+}
+
+
+
 /* height of the container */
 .leaflet-container {
   height: 60vh;
@@ -110,25 +127,42 @@
 /*HOME SCREEN*/
 
 .home-screen{
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
   position: relative;
+  box-sizing: border-box;
+  gap: 10px;
+}
+
+.home-screen-left-col{
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid black;
 }
 
 
-.home-screen-main{
-  width: calc(100% - 410px);
+.home-screen-right-col{
+  width: 100%;
   box-sizing: border-box;
   border: 1px solid black;
-  height: fit-content;
 }
 
-.home-screen-aside{
-  height: calc(100vh - 50px);
-  width: 400px;
-  position: fixed;
-  top: 50px;
-  right: 10px;
+.home-screen-grid{
+  width: 100%;
+  height: 120px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   box-sizing: border-box;
+  padding: 10px;
+  gap: 10px;
   border: 1px solid black;
+}
+
+
+.home-screen-taks-container{
+  width: 100%;
+  box-sizing: border-box;
+  height: 350px;
+  border: 1px solid black;
+  overflow-y: scroll;
 }

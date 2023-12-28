@@ -8,7 +8,8 @@ import NavBar from '../components/NavBar';
 import Aside from '../components/Aside';
 import { AppContext } from '../context/AppContext';
 import Swal from 'sweetalert2'
-
+import 'react-calendar/dist/Calendar.css';
+import Calendar from 'react-calendar';
 
 
 const HomeScreen = () => {
@@ -63,7 +64,7 @@ const HomeScreen = () => {
     }
   }
 
-
+  const test = [1,2,1,1,1,1]
   return (
     <>
     
@@ -77,14 +78,21 @@ const HomeScreen = () => {
           <div>Error</div>
           :
           <div className='scroll-container home-screen'>
-            <div className='home-screen-main'>
-              <div>
-                Grid
+            <div className='home-screen-left-col'>
+              {/**/}
+              <div className='home-screen-grid'>
+                <div style={{backgroundColor:"red"}}></div>
+                <div style={{backgroundColor:"red"}}></div>
+                <div style={{backgroundColor:"red"}}></div>
+              </div>
+              {/**/}
+              <div style={{backgroundColor:"violet",height:"40px"}}>Tareas programadas</div>
+              {/**/}
+              <div className='home-screen-taks-container'>
+              {/**/}
               </div>
             </div>
-            
-            <div className='home-screen-aside'>
-              aside
+            <div className='home-screen-right-col'>
             </div>
 
            
