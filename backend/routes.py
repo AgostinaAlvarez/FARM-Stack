@@ -157,6 +157,7 @@ async def get_tareas (payload: dict = Depends(verify_token)):
         '''
             SELECT 
                 parcelas.nombre AS nombre_parcela,
+                tareas.prioridad AS prioridad,
                 viniedos.nombre AS nombre_viniedo,
                 viniedos.localidad AS localidad_viniedo,
                 viniedos.pais AS pais_viniedo,

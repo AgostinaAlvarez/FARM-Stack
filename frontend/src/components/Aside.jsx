@@ -13,7 +13,7 @@ const Aside = () => {
   return (
     <aside className='aside'>
         <div  onClick={()=>{navigate('/')}} className='aside-icon'>
-            <FaHome style={{fontSize:25}}/>
+            <FaHome style={{fontSize:25,color:"white"}}/>
             <span>Home</span>
         </div>
         <div  onClick={()=>{navigate('/vinedos')}}  className='aside-icon'>
@@ -21,7 +21,7 @@ const Aside = () => {
             <span>Vinedos</span>
         </div>
         <div className='aside-icon'>
-            <FaWarehouse style={{fontSize:25}}/>
+            <FaWarehouse style={{fontSize:25, color:"white"}}/>
             <span>Inventario</span>
         </div>
         <div className='aside-icon'>
