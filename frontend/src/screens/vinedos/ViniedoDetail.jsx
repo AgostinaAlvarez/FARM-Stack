@@ -3,6 +3,7 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import { AppContext } from '../../context/AppContext'
+import LineChartViniedo from './LineChartViniedo'
 
 const ViniedoDetail = () => {
   const { axiosConfig } = useContext(AppContext);
@@ -74,10 +75,10 @@ const ViniedoDetail = () => {
               </div>
               {/*Map section*/}
               <div className='viniedo-detail-maps'>
-
+                <LineChartViniedo/>
               </div>
 
-              
+
               <span>{datos.localidad} {datos.provincia} {datos.pais}</span>
               {
                 datos.coordenadas_polygon === null ?
