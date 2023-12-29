@@ -51,7 +51,33 @@ const ViniedoDetail = () => {
             <div>Error</div>
             :
             <div style={{display:"flex",flexDirection:"column"}} className='scroll-container'>
-              <h1>Viniedo detail: {datos.nombre}</h1>
+              <h1 style={{zIndex:100,marginLeft:20}}>Viniedo detail: {datos.nombre}</h1>
+
+              {/*Header grid*/}
+              <div className='viniedos-screen-header'>
+                <div className='viniedos-screen-header-item'>
+                  <div>Rendimiento</div>
+                  <span style={{fontSize:25,fontWeight:600}}>23400</span>
+                </div>
+                <div className='viniedos-screen-header-item'>
+                  <div>Rendimiento</div>
+                  <span style={{fontSize:25,fontWeight:600}}>23400</span>
+                </div>
+                <div className='viniedos-screen-header-item'>
+                  <div>Rendimiento</div>
+                  <span style={{fontSize:25,fontWeight:600}}>23400</span>
+                </div>
+                <div className='viniedos-screen-header-item'>
+                  <div>Rendimiento</div>
+                  <span style={{fontSize:25,fontWeight:600}}>23400</span>
+                </div>
+              </div>
+              {/*Map section*/}
+              <div className='viniedo-detail-maps'>
+
+              </div>
+
+              
               <span>{datos.localidad} {datos.provincia} {datos.pais}</span>
               {
                 datos.coordenadas_polygon === null ?

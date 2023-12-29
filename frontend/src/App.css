@@ -387,11 +387,10 @@ border-radius: 8px; /* Borde redondeado del track */
 }
 
 .viniedos-screen-header{
-  width: 85%;
+  width: 90%;
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  height: 120px;
   gap: 20px;
   padding: 0px 20px;
   margin-bottom: 30px;
@@ -408,12 +407,18 @@ border-radius: 8px; /* Borde redondeado del track */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
 }
 
 
-.viniedos-map-section{
+.viniedo-detail-maps{
   width: 100%;
   box-sizing: border-box;
   border: 1px solid black;
   display: flex;
+  
+}
+
+.viniedos-map-section{
 }
