@@ -44,7 +44,6 @@ const LineChartViniedo = () => {
         <Tooltip />
         <Legend />
         <Line type="monotone" dataKey="Viñedo Vista Andina" stroke="#8884d8" name="Viñedo Vista Andina" />
-        <Line type="monotone" dataKey="Viñedo Sol de los Andes" stroke="#82ca9d" name="Viñedo Sol de los Andes" />
       </LineChart>
     </div>
   );

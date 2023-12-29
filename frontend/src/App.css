@@ -121,8 +121,8 @@ border-radius: 8px; /* Borde redondeado del track */
 
 /* height of the container */
 .leaflet-container {
-  height: 60vh;
-  width: 60%;
+  height: 100%;
+  width: 100%;
 }
 
 
@@ -436,4 +436,16 @@ border-radius: 8px; /* Borde redondeado del track */
   background-color: #6f48eb;
   position: fixed;
   right: 10px;
+}
+
+
+
+.viniedo-detail-map-section{
+  width: 100%;
+  height: 400px;
+  box-sizing: border-box;
+  padding: 20px;
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
 }

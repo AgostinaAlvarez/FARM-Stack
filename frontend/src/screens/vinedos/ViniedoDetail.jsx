@@ -5,6 +5,9 @@ import { NavLink, useParams } from 'react-router-dom'
 import { AppContext } from '../../context/AppContext'
 import LineChartViniedo from './LineChartViniedo'
 import PieChartViniedo from './PieChartViniedo'
+import PolygonComponent from '../../tester/PolygonComponent'
+import ViniedosMap from './ViniedosMap'
+import VDMap from './Maps/Viniedo Detail/VDMap'
 
 const ViniedoDetail = () => {
   const { axiosConfig } = useContext(AppContext);
@@ -90,7 +93,12 @@ const ViniedoDetail = () => {
                   <LineChartViniedo/>
                   <PieChartViniedo/>
                 </div>
-
+                <div className='viniedo-detail-map-section'>
+                  <div>Lista</div>
+                  <div style={{height:"100%",width:"100%",border:"1px solid black"}}>
+                    <VDMap/>
+                  </div>
+                </div>
               </div>
               <div className='viniedo-detail-col-right'>Aside</div>
               {
