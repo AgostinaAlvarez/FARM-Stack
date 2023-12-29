@@ -68,7 +68,18 @@ const HomeScreen = () => {
     }
   }
 
-  const test = [1,2,1,1,1,1]
+  const test = [
+    {
+      id:"aa",
+      titulo:"Pago a proveedores",
+      descripcion:""
+    },
+    {
+      id:"ab",
+      titulo:"Reabastecimiento de Suministros",
+      descripcion:""
+    }
+  ]
 
   
   const data = [
@@ -146,15 +157,15 @@ const HomeScreen = () => {
               <div className='home-screen-grid'>
                 <div className='home-screen-grid-item'>
                   <span style={{fontSize:"12px"}}>Territorio</span>
-                  <span style={{fontSize:"28px",fontWeight:500}}>2300</span>
+                  <span style={{fontSize:"28px",fontWeight:500}}>15 He</span>
+                </div>
+                <div className='home-screen-grid-item'>
+                  <span style={{fontSize:"12px"}}>Rendimientos</span>
+                  <span style={{fontSize:"28px",fontWeight:500}}>127.500 kg</span>
                 </div>
                 <div className='home-screen-grid-item'>
                   <span style={{fontSize:"12px"}}>Produccion</span>
-                  <span style={{fontSize:"28px",fontWeight:500}}>2300</span>
-                </div>
-                <div className='home-screen-grid-item'>
-                  <span style={{fontSize:"12px"}}>Produccion</span>
-                  <span style={{fontSize:"28px",fontWeight:500}}>2300</span>
+                  <span style={{fontSize:"28px",fontWeight:500}}>178.500 L</span>
                 </div>
               </div>
               <div style={{width:"100%",height:320,display:"flex",alignItems:"center",justifyContent:"space-between"}}>
@@ -202,19 +213,29 @@ const HomeScreen = () => {
 
             </div>
             <div className='home-screen-right-col'>
-              <div style={{width:"100%",backgroundColor:"#dadadad0",boxSizing:"border-box",padding:20,borderRadius:10,textAlign:"center",fontSize:14}}>
+              <div style={{width:"100%",fontWeight:500,backgroundColor:"#dadadad0",boxSizing:"border-box",padding:20,borderRadius:10,textAlign:"center",fontSize:14}}>
                 Jueves 28 de diciembre 2023
               </div>
               <div className='home-waether-container'>
                 <img style={{height:80}} src={iconC}/>
                 <div className='home-waether-info'>
-
+                  <div style={{display:"flex",alignItems:"flex-start"}}>
+                    <span style={{fontSize:35,fontWeight:500}}>29</span><span style={{fontSize:20,fontWeight:500}}>°C</span>
+                  </div>
+                  <div style={{display:"flex",flexDirection:"column",gap:5}}>
+                    <span>Humedad: 36%</span>
+                    <span>Prob. de precipitaciones: 0%</span>
+                    <span>Viento: a 11 km/h</span>
+                  </div>
                 </div>
               </div>
               <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}>
                 <Calendar/>
               </div>
-              <div>Recordatorios: </div>
+              <div style={{padding:"0px 20px",fontSize:14,alignItems:"center",display:"flex",boxSizing:"border-box",justifyContent:"space-between"}}>
+                <span style={{fontWeight:600}}>Recordatorios</span>
+                <button>Agregar</button>
+              </div>
               <div className='home-screen-taks-container ' style={{width:"90%", margin:"0px auto",backgroundColor:"white"}}>
                 {
                     test.length === 0 ?
@@ -231,7 +252,7 @@ const HomeScreen = () => {
                                 <div style={{height:50, width:55,backgroundColor:"#8EACCD",display:"flex",alignItems:"center",justifyContent:"center",marginRight:10}}>
                                   <FaListUl/>
                                 </div>
-                                <span>Recordatorio </span>
+                                <span>{item.titulo}</span>
                               </div>
                               <button>Ver</button>
                             </div> 

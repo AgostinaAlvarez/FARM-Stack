@@ -8,53 +8,36 @@ import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, 
 const RadarChartEx = () => {
   const data = [
     {
-      subject: 'Math',
-      A: 120,
-      B: 110,
-      fullMark: 150,
+      marketSegment: 'Restaurantes',
+      sales: 50000,
     },
     {
-      subject: 'Chinese',
-      A: 98,
-      B: 130,
-      fullMark: 150,
+      marketSegment: 'Tiendas',
+      sales: 65000,
     },
     {
-      subject: 'English',
-      A: 86,
-      B: 130,
-      fullMark: 150,
+      marketSegment: 'Exportaciones',
+      sales: 90000,
     },
     {
-      subject: 'Geography',
-      A: 99,
-      B: 100,
-      fullMark: 150,
+      marketSegment: 'Venta al consumidor',
+      sales: 40000,
     },
     {
-      subject: 'Physics',
-      A: 85,
-      B: 90,
-      fullMark: 150,
-    },
-    {
-      subject: 'History',
-      A: 65,
-      B: 85,
-      fullMark: 150,
+      marketSegment: 'Distribuidores',
+      sales: 75000,
     },
   ];
 
   return (
-    <div style={{ width: 320, height: 300, 
+    <div style={{ width: 350, height: 300, 
     //border:"1px solid black"
     }}>
-      <RadarChart width={320} height={250} outerRadius={90} data={data} style={{ fontSize: '11px' }}>
+      <RadarChart width={350} height={250} outerRadius={90} data={data} style={{ fontSize: '11px' }}>
         <PolarGrid />
-        <PolarAngleAxis dataKey="subject" />
-        <PolarRadiusAxis angle={30} domain={[0, 150]} />
-        <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-        <Radar name="Lily" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
+        <PolarAngleAxis dataKey="marketSegment" />
+        <PolarRadiusAxis angle={30} domain={[0, 100000]} />
+        <Radar name="Ventas Anuales" dataKey="sales" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
         <Legend />
       </RadarChart>
     </div>
