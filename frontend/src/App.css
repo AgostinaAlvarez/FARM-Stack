@@ -337,7 +337,83 @@ border-radius: 8px; /* Borde redondeado del track */
 
 /*Viniedos section*/
 
+.viniedos-home-grid{
+  width: 100%;
+  height: calc(100vh - 50px);
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  background-color: #442D7C;
+}
+
+.viniedos-home-grid-col{
+  height: 100%;
+  width: 100%;
+}
+
+.viniedos-home-grid-col-left{
+  border-radius: 0px 20px 20px 0px;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.viniedos-home-grid-col-right{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.viniedos-home-grid-col-left-list{
+  width: 100%;
+  height: calc(100% - 100px);
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+  padding: 0px 10px;
+}
+
+.viniedos-item{
+  box-sizing: border-box;
+  padding: 20px;
+  border: 1px solid grey;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
 .viniedos-screen-header{
+  width: 85%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 120px;
+  gap: 20px;
+  padding: 0px 20px;
+  margin-bottom: 30px;
+}
+
+
+.viniedos-screen-header-item{
+  background: #ffffff;
+  box-shadow:  20px 20px 60px #a3a3a3,
+               -20px -20px 60px #ffffff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.viniedos-map-section{
   width: 100%;
   box-sizing: border-box;
+  border: 1px solid black;
+  display: flex;
 }
