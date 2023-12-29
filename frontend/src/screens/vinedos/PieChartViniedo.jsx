@@ -5,10 +5,10 @@ import { PieChart, Pie, Tooltip, Legend, Cell } from 'recharts';
 const COLORS = ['#711DB0', '#A367B1', '#392467', '#7E30E1'];
 
 const data = [
-  { name: 'Cabernet Sauvignion', value: 40 },
-  { name: 'Chardonnay', value: 30 },
-  { name: 'Merlot', value: 20 },
-  { name: 'Sauvignon Blanc', value: 10 }
+  { name: 'Cabernet Sauvignion', value: 3400 },
+  { name: 'Chardonnay', value: 3244 },
+  { name: 'Merlot', value: 2234 },
+  { name: 'Sauvignon Blanc', value: 1321 }
 ];
 
 

@@ -88,16 +88,40 @@ const ViniedoDetail = () => {
                     )
                   }
                 </div>
-
+                {/*GRAFICOS*/}
                 <div className='viniedo-detail-charts'>
                   <LineChartViniedo/>
                   <PieChartViniedo/>
                 </div>
+                {/*PARCELAS Y MAPA*/}
                 <div className='viniedo-detail-map-section'>
-                  <div>Lista</div>
-                  <div style={{height:"100%",width:"100%",border:"1px solid black"}}>
+                  {/*col izquierda*/}
+                  <div style={{height:"100%",width:"100%"}}>
                     <VDMap/>
                   </div>
+                  {/*col derecha*/}
+                  <div style={{overflowY:"scroll",height:"100%",width:"100%",boxSizing:"border-box",padding:"7px 10px",backgroundColor:"#afafaf80",display:"flex",flexDirection:"column",gap:10}}>
+                    {
+                      datos.parcelas.length == 0 ?
+                      <span>No hay parcelas registradas</span>
+                      :
+                      <>
+                        {
+                          datos.parcelas.map((item,index)=>
+                            <div className='viniedo-detail-parcelas-item' key={index}>
+                              <span style={{fontSize:"14px",fontWeight:600,color:"black"}}>{item.nombre}</span>
+                              <span>Superficie: {item.superficie} He.</span>
+                              <span>Ubicacion: {item.longitud} {item.latitud}</span>
+                              <NavLink to={`/parcela/${item.id}`}>Ver Parcela</NavLink>
+                            </div>
+                          )
+                        }
+                      </>
+                    }
+                  </div>
+                </div>
+                <div>
+                  <div>Lista</div>
                 </div>
               </div>
               <div className='viniedo-detail-col-right'>Aside</div>
