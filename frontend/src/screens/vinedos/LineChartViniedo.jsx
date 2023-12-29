@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
@@ -19,7 +20,7 @@ const LineChartViniedo = () => {
 
   return (
     <div style={{
-      width: 560,
+      width: 500,
       height: 300,
       //border: "1px solid black",
       display: "flex",
@@ -32,7 +33,7 @@ const LineChartViniedo = () => {
         Rendimiento mensual por hectárea
       </div>
       <LineChart
-        width={560}
+        width={500}
         height={250}
         data={data}
         style={{ fontSize: '11px' }}

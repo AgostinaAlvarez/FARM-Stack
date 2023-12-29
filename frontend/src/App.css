@@ -387,7 +387,7 @@ border-radius: 8px; /* Borde redondeado del track */
 }
 
 .viniedos-screen-header{
-  width: 90%;
+  width: 100%;
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -403,22 +403,37 @@ border-radius: 8px; /* Borde redondeado del track */
                -20px -20px 60px #ffffff;
   border-radius: 10px;
   box-sizing: border-box;
-  padding: 20px 30px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 10px;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 
-.viniedo-detail-maps{
+.viniedo-detail-charts{
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   display: flex;
-  
+  gap: 40px;
+  align-items: center;
 }
 
-.viniedos-map-section{
+
+.viniedo-detail-col-left{
+  width: calc(100% - 400px);
+  height: fit-content;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
+.viniedo-detail-col-right{
+  height: calc(100vh - 50px);
+  width: 400px;
+  box-sizing: border-box;
+  background-color: #6f48eb;
+  position: fixed;
+  right: 10px;
 }
