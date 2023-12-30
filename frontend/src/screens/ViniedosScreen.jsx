@@ -60,7 +60,10 @@ const ViniedosScreen = () => {
           <>
             <div className='viniedos-home-grid'>
               <div className='viniedos-home-grid-col viniedos-home-grid-col-left'>
-                <h1 style={{marginLeft:15}}>Viñedos</h1>
+                <div style={{display:"flex",padding:"0px 20px",alignItems:"center",justifyContent:"space-between",boxSizing:"border-box"}}>
+                  <h1>Viñedos</h1>
+                  <button style={{cursor:"pointer"}}>Crear un nuevo viñedo</button>
+                </div>
                 <div className='viniedos-home-grid-col-left-list scroll-container'>
                   {
                     viniedos.map((item,index)=>

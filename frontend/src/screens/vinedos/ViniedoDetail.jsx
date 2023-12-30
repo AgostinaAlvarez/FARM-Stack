@@ -110,8 +110,12 @@ const ViniedoDetail = () => {
                           datos.parcelas.map((item,index)=>
                             <div className='viniedo-detail-parcelas-item' key={index}>
                               <span style={{fontSize:"14px",fontWeight:600,color:"black"}}>{item.nombre}</span>
+                              {
+                                /*
+                                <span>Ubicacion: {item.longitud} {item.latitud}</span>
+                                */
+                              }
                               <span>Superficie: {item.superficie} He.</span>
-                              <span>Ubicacion: {item.longitud} {item.latitud}</span>
                               <NavLink to={`/parcela/${item.id}`}>Ver Parcela</NavLink>
                             </div>
                           )

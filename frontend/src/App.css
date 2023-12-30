@@ -453,7 +453,7 @@ border-radius: 8px; /* Borde redondeado del track */
 .viniedo-detail-parcelas-item{
   width: 100%;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 10px 20px;
   display: flex;
   flex-direction: column;
   border: 1px solid grey;
