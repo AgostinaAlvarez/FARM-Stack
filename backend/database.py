@@ -6,10 +6,9 @@ from sqlalchemy.orm import sessionmaker
 
 load_dotenv()
 
-uri_db = os.getenv("URI_APP")
+uri = os.getenv("URI_APP")
 
-
-SQLALCHEMY_DATABASE_URL = "mysql+mysqlconnector://root:pin420608@localhost:3306/bd"
+SQLALCHEMY_DATABASE_URL = uri
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
